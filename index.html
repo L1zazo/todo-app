@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask ToDo აპლიკაცია</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h2>ჩემი ToDo სია</h2>
+
+    <form action="/add" method="POST">
+        <input type="text" name="todo" placeholder="ჩაწერეთ დავალება..." required>
+        <button type="submit">დამატება</button>
+    </form>
+
+    <ul>
+        {% for todo in todos %}
+            <li>
+                {{ todo }}
+                <a href="{{ url_for('delete', index_id=loop.index0) }}" class="delete-btn">X</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
